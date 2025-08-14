@@ -8,7 +8,7 @@ const std::string BOOKS_FILENAME = "data/books.dat";
 const std::string USERS_FILENAME = "data/users.dat";
 const std::string ADMIN_USERNAME = "admin";
 const std::string ADMIN_PASSWORD = "admin123";
-
+using namespace std;
 // =======================================================
 // USER MANAGEMENT (FRAMEWORK - DO NOT MODIFY)
 // =======================================================
@@ -55,10 +55,17 @@ std::vector<Book> loadBooks() {
 // This exercise covers: functions, std::vector, std::string
 void addBook(std::vector<Book>& books) {
     // 1. Create a new 'Book' object.
+
     // 2. Set its 'id'. A simple way is to use the current size of the vector: books.size() + 1.
+    int id = sizeof(Book) + 1;
     // 3. Prompt the user to "Enter title: " and read the input into the book's 'title'.
+    cout << "Enter the title: ";
+    cin >> books.title;
     // 4. Prompt the user to "Enter author: " and read the input into the book's 'author'.
+    cout << "Enter author: ";
+    cin >> books.author;
     // 5. Set the book's 'isAvailable' status to true.
+
     // 6. Add the new book object to the 'books' vector using push_back().
     // 7. Print a confirmation message.
 }
