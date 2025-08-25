@@ -3,12 +3,13 @@
 #include <fstream>
 #include <limits>
 #include <algorithm>
+#include <vector>
+using namespace std;
 
 const std::string BOOKS_FILENAME = "data/books.dat";
 const std::string USERS_FILENAME = "data/users.dat";
 const std::string ADMIN_USERNAME = "admin";
 const std::string ADMIN_PASSWORD = "admin123";
-
 // =======================================================
 // USER MANAGEMENT (FRAMEWORK - DO NOT MODIFY)
 // =======================================================
@@ -55,42 +56,69 @@ std::vector<Book> loadBooks() {
 // This exercise covers: functions, std::vector, std::string
 void addBook(std::vector<Book>& books) {
     // 1. Create a new 'Book' object.
+    Book newBooks;
     // 2. Set its 'id'. A simple way is to use the current size of the vector: books.size() + 1.
+    newBooks.id = books.size() + 1;
     // 3. Prompt the user to "Enter title: " and read the input into the book's 'title'.
+    cout << "Enter the title: ";
+    getline(cin >> ws, newBooks.title);
     // 4. Prompt the user to "Enter author: " and read the input into the book's 'author'.
+    cout << "Enter author: ";
+    getline(cin >> ws, newBooks.author);
     // 5. Set the book's 'isAvailable' status to true.
+    newBooks.isAvailable = true;
     // 6. Add the new book object to the 'books' vector using push_back().
+    books.push_back(newBooks);
     // 7. Print a confirmation message.
-}
-
+    cout << newBooks.title << " with the author name of: " << newBooks.author << " is being added ";
+}//finish 1.
 // STUDENT TASK: Implement the displayAllBooks function.
 // This exercise covers: functions, std::vector
 void displayAllBooks(const std::vector<Book>& books) {
     // 1. Print a formatted header for the book list.
+    cout << "----- Book List -----";
     // 2. Create a loop that iterates through the entire 'books' vector.
+    for (int i = 0; i < books.size(); i++){
+        //cout << bookList.id[i];
+        cout << books[i].id;
+        cout << books[i].title;
+        cout << books[i].title;
+        cout << books[i].isAvailable;
+    }
     // 3. Inside the loop, print the details of each book (id, title, author, availability).
-}
+}//finish 2.
 
 // STUDENT TASK: Implement findBookById to return a pointer.
 // This exercise covers: functions, pointers (&)
 Book* findBookById(std::vector<Book>& books, int id) {
     // 1. Create a loop to iterate through the 'books' vector.
+    for (int i = 0; i < books.size() ; i++){
+        if(books[i].id == id){
+            return &books[i];
+        } else{
+            return nullptr;
+        }
+    }
     // 2. Inside the loop, check if the 'id' of the current book matches the 'id' parameter.
     // 3. If it matches, return the memory address of that book object. (Hint: use the '&' operator).
     // 4. If the loop finishes and no book is found, return 'nullptr'.
     return nullptr; // Placeholder
-}
+}//finish 3.
 
 // STUDENT TASK: Implement checkOutBook using the pointer from findBookById.
 // This exercise covers: functions, pointers (*)
 void checkOutBook(std::vector<Book>& books) {
     // 1. Prompt the user for the "ID of the book to check out: ".
+    cout <<"Please enter the ID of the book you want to check out: ";
+    for (int i = 0;i > books.size(); i++){
+        cin >> books[i].id;
+    }
     // 2. Call findBookById() with the user's ID to get a pointer to the book.
     // 3. Check if the returned pointer is NOT nullptr.
     // 4. If it's a valid pointer, check if the book 'isAvailable'.
     // 5. If it is available, set its 'isAvailable' status to false (Hint: use -> or (*). ).
     // 6. Print confirmation or error messages for each case (not found, already checked out, success).
-}
+}//to be continued 4.
 
 // STUDENT TASK: Implement returnBook (similar to checkOutBook).
 // This exercise covers: functions, pointers (*)
@@ -107,6 +135,8 @@ void returnBook(std::vector<Book>& books) {
 // This exercise covers: algorithms
 void sortBooksByTitle(std::vector<Book>& books) {
     // 1. Get the number of books, 'n'.
+
+    cout << "Enter the number of book: ";
     // 2. Implement the classic Bubble Sort nested loops.
     //    - The outer loop runs from i = 0 to n-2.
     //    - The inner loop runs from j = 0 to n-i-2.
