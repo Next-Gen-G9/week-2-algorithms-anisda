@@ -4,7 +4,7 @@
 #include "models/Book.h"
 #include "models/User.h"
 #include "utils/LibraryUtils.h"
-
+using namespace std;
 // --- Forward Declarations for Menu Functions ---
 void runAdminSession();
 void runUserSession();
